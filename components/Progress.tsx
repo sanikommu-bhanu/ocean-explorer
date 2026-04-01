@@ -6,11 +6,10 @@ interface Props { total: number; current: number; progress: number; onGo: (i: nu
 export default function Progress({ total, current, progress, onGo }: Props) {
   return (
     <motion.div
-      className="fixed right-12 top-1/2 -translate-y-1/2 z-50 flex flex-col items-center gap-2"
+      className="hidden md:flex fixed right-12 top-1/2 -translate-y-1/2 z-50 flex-col items-center gap-2"
       initial={{ opacity: 0, x: 16 }} animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 4, duration: 1 }}>
 
-      {/* Depth track */}
       <div className="w-px h-16 bg-white/10 relative overflow-hidden mb-1">
         <motion.div className="absolute top-0 left-0 w-full"
           style={{ background: 'linear-gradient(180deg,#00f5d4,#1a8fa8)', boxShadow: '0 0 8px #00f5d4' }}

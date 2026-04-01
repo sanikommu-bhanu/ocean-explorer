@@ -23,9 +23,9 @@ interface Props {
 
 export default function ContentPanel({ section, active, onTakeAction }: Props) {
   const alignCls = {
-    left:   'items-start text-left   pl-[11vw] pr-[22vw]',
-    center: 'items-center text-center px-[8vw]',
-    right:  'items-end   text-right  pr-[11vw] pl-[25vw]',
+    left:   'items-start text-left   px-5 sm:px-[8vw] md:pl-[11vw] md:pr-[22vw]',
+    center: 'items-center text-center px-5 sm:px-[6vw] md:px-[8vw]',
+    right:  'items-end   text-right   px-5 sm:px-[8vw] md:pr-[11vw] md:pl-[25vw]',
   }[section.align];
 
   return (
@@ -37,7 +37,6 @@ export default function ContentPanel({ section, active, onTakeAction }: Props) {
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
           transition={{ duration: 0.7 }}
         >
-          {/* Floating wrapper */}
           <motion.div
             animate={{ y: [0, -8, 0] }}
             transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
@@ -55,7 +54,7 @@ export default function ContentPanel({ section, active, onTakeAction }: Props) {
             {/* Title */}
             {(section.title.length > 0 || section.italic) && (
               <h2 className="font-serif text-white leading-[.97] tracking-[-0.015em]"
-                style={{ fontSize: 'clamp(3.2rem,7.8vw,7.6rem)', fontWeight: 300,
+                style={{ fontSize: 'clamp(2.2rem,7.8vw,7.6rem)', fontWeight: 300,
                   textShadow: '0 8px 60px rgba(0,0,0,.5)' }}>
                 {section.title.map((word, i) => (
                   <span key={i} className="inline-block overflow-hidden align-bottom mr-3">
@@ -94,8 +93,8 @@ export default function ContentPanel({ section, active, onTakeAction }: Props) {
 
             {/* Body */}
             {section.body && (
-              <motion.p className="font-serif text-foam/68 leading-[1.82] max-w-[400px]"
-                style={{ fontSize: '1.05rem', fontWeight: 300, letterSpacing: '.02em' }}
+              <motion.p className="font-serif text-foam/68 leading-[1.82] w-full max-w-full md:max-w-[400px]"
+                style={{ fontSize: '1rem', fontWeight: 300, letterSpacing: '.02em' }}
                 variants={FADE(0.65)} initial="hidden" animate="visible">
                 {section.body}
               </motion.p>
@@ -103,12 +102,12 @@ export default function ContentPanel({ section, active, onTakeAction }: Props) {
 
             {/* Stats */}
             {section.stats && (
-              <motion.div className="flex gap-11 mt-8"
+              <motion.div className="flex gap-6 md:gap-11 mt-6 md:mt-8 flex-wrap"
                 variants={FADE(0.85)} initial="hidden" animate="visible">
                 {section.stats.map(s => (
                   <div key={s.k}>
                     <div className="font-mono text-biolum leading-none"
-                      style={{ fontSize: '2.1rem', fontWeight: 700 }}>{s.v}</div>
+                      style={{ fontSize: 'clamp(1.4rem,5vw,2.1rem)', fontWeight: 700 }}>{s.v}</div>
                     <div className="font-mono text-[8px] tracking-[.22em] uppercase text-foam/38 mt-1">{s.k}</div>
                   </div>
                 ))}
@@ -132,7 +131,7 @@ export default function ContentPanel({ section, active, onTakeAction }: Props) {
 
             {/* Strips */}
             {section.strips && (
-              <motion.div className="flex gap-0.5 w-full max-w-[640px] mt-9"
+              <motion.div className="grid grid-cols-2 md:flex gap-0.5 w-full max-w-full md:max-w-[640px] mt-7 md:mt-9"
                 variants={FADE(0.9)} initial="hidden" animate="visible">
                 {section.strips.map(s => (
                   <div key={s.k}
@@ -157,7 +156,7 @@ export default function ContentPanel({ section, active, onTakeAction }: Props) {
 
             {/* Cards */}
             {section.cards && (
-              <motion.div className="grid grid-cols-3 gap-3.5 max-w-[840px] mt-8"
+              <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-3.5 w-full max-w-full md:max-w-[840px] mt-6 md:mt-8"
                 variants={FADE(0.7)} initial="hidden" animate="visible">
                 {section.cards.map((c, i) => (
                   <motion.div key={c.title}
@@ -183,7 +182,7 @@ export default function ContentPanel({ section, active, onTakeAction }: Props) {
                   e.preventDefault();
                   if (section.id === 6) onTakeAction();
                 }}
-                className="inline-flex pointer-events-auto items-center gap-3.5 mt-10 px-8 py-3.5 rounded-sm font-mono text-[10px] tracking-[.26em] uppercase no-underline transition-all duration-300"
+                className="inline-flex pointer-events-auto items-center gap-3 md:gap-3.5 mt-8 md:mt-10 px-5 py-3 md:px-8 md:py-3.5 rounded-sm font-mono text-[9px] md:text-[10px] tracking-[.22em] md:tracking-[.26em] uppercase no-underline transition-all duration-300"
                 style={{
                   border: `1px solid ${section.cta.gold ? 'rgba(212,168,71,.38)' : 'rgba(0,245,212,.35)'}`,
                   background: section.cta.gold ? 'rgba(212,168,71,.055)' : 'rgba(0,245,212,.055)',

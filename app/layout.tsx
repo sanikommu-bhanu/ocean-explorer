@@ -6,13 +6,18 @@ import CustomCursor from '../components/CustomCursor';
 
 export const metadata: Metadata = {
   title: 'Ocean Explorer — Journey Into The Deep',
-  description: 'A cinematic, immersive scroll-driven journey into the world\'s oceans.',
+  description: 'A cinematic, immersive scroll-driven journey into the world’s oceans.',
+  viewport: 'width=device-width, initial-scale=1',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
-      <body suppressHydrationWarning>
+      <body suppressHydrationWarning className="overflow-x-hidden">
         <AppProviders>
           <Template>{children}</Template>
           <CustomCursor />
